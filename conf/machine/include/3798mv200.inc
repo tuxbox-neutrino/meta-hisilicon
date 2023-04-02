@@ -6,7 +6,7 @@ PREFERRED_VERSION_systemd = "245.6"
 #require conf/machine/include/arm/arch-armv8.inc
 require conf/machine/include/tune-cortexa15.inc
 require conf/machine/include/hd-essential.inc
-inherit image_version
+
 
 # Kodi
 EXTRA_OECONF_append_pn-kodi += " --with-gpu=mali"
