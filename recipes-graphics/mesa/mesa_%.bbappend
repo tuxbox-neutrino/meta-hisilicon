@@ -1,10 +1,10 @@
 ANY_OF_DISTRO_FEATURES_class-target = ""
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI_append += "file://fbdev_window.h"
+SRC_URI:append += "file://fbdev_window.h"
 
-DEPENDS_append += "libdrm elfutils"
+DEPENDS:append += "libdrm elfutils"
 
 PACKAGECONFIG_class-target ??= "${@bb.utils.filter('DISTRO_FEATURES', 'wayland vulkan', d)} \
                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'x11 dri3', '', d)} \
@@ -18,7 +18,7 @@ PACKAGECONFIG_class-target ??= "${@bb.utils.filter('DISTRO_FEATURES', 'wayland v
                    dri \
 		   "
 
-do_install_append() {
+do_install:append() {
     # Remove Mesa libraries (EGL, GLESv1, GLESv2, GBM)
     # provided by SOC
     rm -f ${D}${libdir}/libGLESv1_CM.*

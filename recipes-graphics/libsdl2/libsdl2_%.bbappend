@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/libsdl2:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/libsdl2:"
 
 DEPENDS += "virtual/libgles2"
 
