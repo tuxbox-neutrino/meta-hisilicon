@@ -1,6 +1,8 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI_append += " \
+PR:append = ".1"
+
+SRC_URI:append += " \
 	file://firstboot.sh \
 	file://imgbackup \
 	file://mount.sh \
@@ -11,7 +13,7 @@ SRC_URI_append += " \
 	file://local.sh \
 "
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}${bindir} ${D}${sbindir} ${D}${systemd_unitdir}/system/multi-user.target.wants
  	install -m 0755 ${WORKDIR}/firstboot.sh  ${D}${sbindir}
 	install -m 0755 ${WORKDIR}/partitions-by-name.sh ${D}${bindir}
