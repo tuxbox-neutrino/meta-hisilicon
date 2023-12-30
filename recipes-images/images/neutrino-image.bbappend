@@ -1,12 +1,12 @@
-DEPENDS_append += " \
-        hd-partitions-${MACHINE} \
-        hd-bootargs-${MACHINE} \
-	hd-recovery-${MACHINE} \
+DEPENDS:append += " \
+        gfutures-partitions-${MACHINE} \
+        gfutures-bootargs-${MACHINE} \
+	gfutures-recovery-${MACHINE} \
 "
 
 IMAGE_INSTALL += " \
-	hd-dvb-modules-${MACHINE} \
-	hd-libs-${HICHIPSET} \
-	hd-mali-${HICHIPSET} \
+	gfutures-dvb-modules-${MACHINE} \
+	gfutures-libs-${HICHIPSET} \
+	gfutures-mali-${HICHIPSET} \
 	kernel-module-mali-${HICHIPSET} \
 "
