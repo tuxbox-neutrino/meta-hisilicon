@@ -3,6 +3,8 @@ inherit image_types
 IMAGE_TYPEDEP_hdfastboot8gb = "ext4 tar.bz2"
 BOOTOPTIONS_PARTITION_SIZE = "2048"
 
+do_image_hdfastboot8gb[vardepsexclude] = "DATE DATETIME BUILD_VERSION PR"
+
 do_image_hdfastboot8gb[depends] = " \
 	e2fsprogs-native:do_populate_sysroot \
 	android-tools-native:do_populate_sysroot \
@@ -11,7 +13,7 @@ do_image_hdfastboot8gb[depends] = " \
 	zip-native:do_populate_sysroot \
 "
 
-IMAGE_CMD_hdfastboot8gb () {
+IMAGE_CMD:hdfastboot8gb () {
     dd if=/dev/zero of=${WORKDIR}/bootoptions.img bs=1024 count=${BOOTOPTIONS_PARTITION_SIZE}
     mkfs.msdos -S 512 ${WORKDIR}/bootoptions.img
     echo "bootcmd=setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3BD000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP
@@ -29,7 +31,7 @@ IMAGE_CMD_hdfastboot8gb () {
     echo "bootcmd=setenv bootargs \$(bootargs) \$(bootargs_common); mmc read 0 0x1000000 0x3D5000 0x8000; bootm 0x1000000; run bootcmd_fallback" > ${WORKDIR}/STARTUP_LINUX_4
     echo "bootargs=root=/dev/mmcblk0p23 rootsubdir=linuxrootfs4 kernel=/dev/mmcblk0p22 rootfstype=ext4" >> ${WORKDIR}/STARTUP_LINUX_4
     echo "bootcmd=setenv bootargs \$(bootargs_common); mmc read 0 0x1000000 0x1000 0x9000; bootm 0x1000000" > ${WORKDIR}/STARTUP_RECOVERY
-    echo "imageurl https://raw.githubusercontent.com/neutrino-hd/bootmenu/master/${MACHINE}/images-${DISTRO_VERSION}" > ${WORKDIR}/bootmenu.conf 
+    echo "imageurl https://raw.githubusercontent.com/dbt1/bootmenu/master/${MACHINE}/images-gatesgarth" > ${WORKDIR}/bootmenu.conf
     echo "# " >> ${WORKDIR}/bootmenu.conf
     echo "iface eth0" >> ${WORKDIR}/bootmenu.conf
     echo "dhcp yes" >> ${WORKDIR}/bootmenu.conf
@@ -53,4 +55,3 @@ IMAGE_CMD_hdfastboot8gb () {
     echo boot-recovery > ${WORKDIR}/misc-boot.img
     cp ${WORKDIR}/misc-boot.img ${IMGDEPLOYDIR}/misc-boot.img
 }
-
