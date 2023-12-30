@@ -12,7 +12,7 @@ S = "${WORKDIR}"
 LABELS = "boot"
 
 ROOT ?= "root=/dev/sda2"
-APPEND_append = " ${ROOT}"
+APPEND:append = " ${ROOT}"
 
 python do_configure() {
     bb.build.exec_func('build_efi_cfg', d)
