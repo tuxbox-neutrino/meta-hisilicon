@@ -1,3 +1,5 @@
+#!/bin/sh
+
 args=`cat /proc/cmdline`
 for line in ${args};
 do
