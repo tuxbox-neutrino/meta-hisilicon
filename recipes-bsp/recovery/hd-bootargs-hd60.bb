@@ -1,7 +1,0 @@
-SRCDATE = "20200504"
-
-require hd-bootargs.inc
-
-COMPATIBLE_MACHINE = "hd60"
-
-SRC_URI[sha256sum] = "a42612d6e517a68d8236871d349a779f6a4e277eac1df089fda8cab14e9f6c80"
